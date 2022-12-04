@@ -22,9 +22,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Inputs de directions
         myInputs.x = Input.GetAxis("Horizontal");
         myInputs.z = Input.GetAxis("Vertical");
 
+        //Personnage regarde la direction de la souris
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
             transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
         }
 
+        //Tir du personnage
         if (Input.GetMouseButtonDown(0))
         {
             Instantiate(bulletPrefab, firePoint.position, transform.rotation);
